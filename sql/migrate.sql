@@ -19,17 +19,17 @@ $$BEGIN
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TRIGGER testschema1."__Log_BADDATA_TRIG"');
    EXCEPTION
-      WHEN fdw_unable_to_create_execution THEN NULL;
+      WHEN fdw_unable_to_create_execution THEN NULL; 
    END;
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TABLE testschema1."__Log_BADDATA" PURGE');
    EXCEPTION
-      WHEN fdw_unable_to_create_execution THEN NULL;
+      WHEN fdw_unable_to_create_execution THEN NULL; 
    END;
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TRIGGER testschema1."__Log_LOG_TRIG"');
    EXCEPTION
-      WHEN fdw_unable_to_create_execution THEN NULL;
+      WHEN fdw_unable_to_create_execution THEN NULL; 
    END;
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TABLE testschema1."__Log_LOG" PURGE');
@@ -44,7 +44,7 @@ $$BEGIN
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TABLE testschema1."__Log_TAB1" PURGE');
    EXCEPTION
-      WHEN fdw_unable_to_create_execution THEN NULL;
+      WHEN  fdw_unable_to_create_execution THEN NULL; 
    END;
    BEGIN
       PERFORM oracle_execute('oracle', 'DROP TRIGGER testschema1."__Log_TAB2_TRIG"');
@@ -82,7 +82,7 @@ SELECT schema, task_type, task_content, task_unit, sum(migration_hours)
 FROM fdw_stage.migration_cost_estimate
 WHERE schema IN ('TESTSCHEMA1', 'TESTSCHEMA2')
   AND task_type <> 'data_migration'  /* size is variable */
-GROUP BY GROUPING SETS ((schema, task_type, task_content, task_unit), (schema))
+GROUP BY GROUPING  SETS ((schema, task_type, task_content, task_unit), (schema))
 ORDER BY schema, task_type;
 
 /* edit some values in the staging schema */
@@ -109,7 +109,7 @@ UPDATE pgsql_stage.functions
                    'END;$$ LANGUAGE plpgsql'
                 )
    WHERE schema = 'testschema1'
-     AND function_name = 'tomorrow';
+     AND function_name  =  'tomorrow';
 
 UPDATE pgsql_stage.triggers SET migrate = TRUE;
 

@@ -52,6 +52,7 @@ Referenced by:
 Triggers:
     tab1_trig BEFORE INSERT OR UPDATE ON testschema1.tab1 FOR EACH ROW EXECUTE FUNCTION testschema1.tab1_trig()
 
+
       Index "testschema1.tab1_bf_bd_ind"
  Column |       Type       | Key? | Definition 
 --------+------------------+------+------------
